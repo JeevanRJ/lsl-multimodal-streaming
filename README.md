@@ -1,4 +1,4 @@
-## Third-Party Dependencies
+## Lab Streaming Layer (LSL)
 
 This project builds upon and integrates functionality from the following open-source repository:
 
