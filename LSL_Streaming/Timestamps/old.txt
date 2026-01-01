@@ -1,0 +1,69 @@
+import time
+import numpy as np
+from pylsl import StreamInfo, StreamOutlet
+from datetime import datetime
+
+def main():
+    # Define stream information
+    stream_name = 'TimestampStream'
+    stream_type = 'Timestamps'
+    stream_id = 'UniqueStreamID12345'  # Change this to a unique identifier for your stream
+    srate = 50
+    prev_timestamp = None
+    effective_srate = 0
+    time_diff = 0.0
+    time_elapsed = 0
+    
+    # Create a stream outlet
+    info = StreamInfo(stream_name, stream_type, 1, srate, 'float32', stream_id)
+    #info = StreamInfo(stream_name, stream_type, 1, 0, stream_id)
+    outlet = StreamOutlet(info)
+    
+    print(f'Streaming timestamps on LSL with stream ID: {stream_id}')
+    
+    # Generate and stream timestamps
+    while True:
+        curr_time = time.time()
+        timestamp = int(curr_time * 1000)  # Get current time in milliseconds
+        # dt_object = datetime.fromtimestamp(curr_time)
+            
+        # Calculate effective sampling rate
+        if prev_timestamp:
+            time_diff = curr_time - prev_timestamp
+            if time_diff > 0:
+                effective_srate = 1.0 / time_diff
+            
+        # Update previous timestamp
+        prev_timestamp = curr_time
+        #string = str(timestamp)
+        # computer_time = dt_object.strftime('%Y-%m-%d %H:%M:%S')
+        outlet.push_sample([timestamp])
+        
+        time_elapsed = (1/srate)-time_diff
+
+        
+        time.sleep(max(0,time_elapsed))  # Adjust the sleep time as needed for your application; Actiheart rate
+        print(f"Timestamp sent: {timestamp}, {time_diff}")
+        
+if __name__ == "__main__":
+    main()
+    
+# def main():
+#     t0 = time.perf_counter()  # Time ref point
+#     time_counter = t0  # Will be incremented with CYCLETIME for each iteration
+
+#     while 1:
+#         ### Code that will read message bytes from a port
+
+#         now = time.perf_counter()
+#         elapsed_time = now - t0
+#         target_time = time_counter + CYCLETIME
+#         if elapsed_time < target_time:
+#             time.sleep(target_time - elapsed_time)
+
+#         # In the full program we write to a csv but in this simple program we will just print it
+#         milliseconds_since_epoch = datetime.datetime.now(timezone.utc)
+#         print(milliseconds_since_epoch)
+
+#         time_counter += CYCLETIME
+
