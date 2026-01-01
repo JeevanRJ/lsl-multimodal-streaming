@@ -1,8 +1,9 @@
-# Lab Streaming Layer Repository
-This repository contains scripts and utilities for real-time data streaming and offline post-processing using the Lab Streaming Layer (LSL), supporting synchronized acquisition of multimodal data.
+## Third-Party Dependencies
 
-## License
+This project builds upon and integrates functionality from the following open-source repository:
 
-This repository is provided under the MIT License. Feel free to use, modify, and distribute the scripts and tools as needed.
+- **Lab_Stream_Layer_Kieran**  
+  https://github.com/kieran-nichols/Lab_Stream_Layer_Kieran  
+  Developed by Kieran Nichols (NeuroErgonomics Lab), licensed under the MIT License.
 
-
+The original repository provides scripts and utilities for data streaming using the Lab Streaming Layer (LSL).
