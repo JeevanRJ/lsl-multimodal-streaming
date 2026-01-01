@@ -87,7 +87,7 @@ Optionally, it can populate `aux` using interpolated accelerometer/gyroscope cha
 
 ---
 
-## Key Assumptions (Important)
+## Key Assumptions
 
 ### 1) Aurora channel row range
 Both scripts commonly use something like:
@@ -146,22 +146,5 @@ Use a template recorded with the same cap placement and Aurora channel configura
 
 ---
 
-## Suggested repo structure
-
-```
-/conversion
-  xdf_to_nirs.m
-  xdf_to_snirf.m
-  README.md
-/templates
-  template.nirs
-  template.snirf
-/data
-  (your .xdf files)
-```
-
----
-
 ## License / attribution
-If you adapted these scripts from others, keep attribution in the header comments and follow the original license requirements.  
-If you wrote modifications, you may apply your repo license (e.g., MIT) while preserving any upstream notices.
+MIT License
